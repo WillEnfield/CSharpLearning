@@ -47,6 +47,7 @@ class Program
         pickaxe.CraftMe(Inventory);
         CheckInventory(Inventory);
 
+        Console.WriteLine("Welcome to Will's game.")
 
         Console.WriteLine("Would you like to see the tutuorial? Y or N");
         if (Console.ReadLine() == "Y") {
