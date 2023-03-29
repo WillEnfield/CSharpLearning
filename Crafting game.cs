@@ -9,13 +9,24 @@ class Program
     static void CheckInventory (List<String> Inventory){
         Console.WriteLine("This is your inventory:");
             Inventory.Sort();
+            if (Inventory.Count != 0){
+                if (Inventory.Count == 1) {
+                    Console.WriteLine(Inventory[0] + ".");
+                } else{
+                    
+            
         for (int i = 0; i < Inventory.Count - 1; i++){
             Console.Write(Inventory[i]); 
             Console.Write(",");
             Console.Write(" ");
         }
-         Console.Write("And ");
+        Console.Write("And ");
         Console.WriteLine(Inventory[Inventory.Count-1]);
+        Console.Write(".");
+        }
+        } else {
+            Console.WriteLine("You don't have any items in your inventory.");
+        }
     }
 
     static void craft (List<string> inventory) {
@@ -31,6 +42,11 @@ class Program
         }
     }
 
+static void AddToInventory(List<string> inventory, params string[] items) {
+    inventory.AddRange(items);
+}
+
+
     static void Main(string[] args)
     {
 
@@ -39,15 +55,9 @@ class Program
         int TutuorialProgress = 0;
         string input0;
         List<string> Inventory = new List<string>();
-        Inventory.Add("Stone");
-        Inventory.Add("Stone");
-        Inventory.Add("Stick");
-        Inventory.Add("Rope");
-        Inventory.Add("Rope");
+        AddToInventory(Inventory,"Rope");
         pickaxe.CraftMe(Inventory);
         CheckInventory(Inventory);
-
-        Console.WriteLine("Welcome to Will's game.");
 
         Console.WriteLine("Would you like to see the tutuorial? Y or N");
         if (Console.ReadLine() == "Y") {
@@ -78,6 +88,11 @@ class Program
                 }
             }
         }
+    }
+
+    private static void AddToInventory(string v1, string v2, string v3, string v4, List<string> inventory)
+    {
+        throw new NotImplementedException();
     }
 }
  
