@@ -20,6 +20,8 @@ class item {
 
 
     public void CraftMe (List<string> inventory){
+        if (CanCraft) 
+        {
         bool craftable = true;
         for (int i = 0; i < Cost.Count; i++)
         {
@@ -39,7 +41,22 @@ class item {
             Console.WriteLine("You do not heve enough items to craft a " + name + ".");
         }
 
-    }
+        } else{
+            Console.WriteLine("you dont know that item.");
+        }
 
     
+    }
+
+
+    public int SellMe (List<string> inventory, int Coins){
+        if (inventory.Contains(name)){
+            inventory.Remove(name);
+            Coins = Coins + SellPrice;
+            Console.WriteLine("You sold a " + name + " for " + SellPrice + " coins\nYou now have " + Coins +" coins.");
+        } else{
+            Console.WriteLine("You don't have a that item.");
+        }
+        return Coins;
+    }
 }

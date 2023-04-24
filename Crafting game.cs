@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 
-// theres an error with the craft me idk what it is.
+
 class Program
 {
+    public static int Coins = 0;
 
     static item pickaxe = new item("Pickaxe", 10, 0.85f, new List<string>(new string[] { "Stone", "Stone", "Stick", "Rope" }));
 
@@ -21,8 +22,8 @@ class Program
             Console.Write(" ");
         }
         Console.Write("And ");
-        Console.WriteLine(Inventory[Inventory.Count-1]);
-        Console.Write(".");
+        Console.Write(Inventory[Inventory.Count-1]);
+        Console.WriteLine(".");
         }
         } else {
             Console.WriteLine("You don't have any items in your inventory.");
@@ -38,14 +39,30 @@ class Program
                 pickaxe.CraftMe(inventory);
             break;
             default:
+            Console.WriteLine("You dont know that item.");
             break;
         }
     }
 
-static void AddToInventory(List<string> inventory, params string[] items) {
-    inventory.AddRange(items);
-}
+    static void AddToInventory(List<string> inventory, params string[] items) {
+        inventory.AddRange(items);
+    }
 
+    static int Sell (List<string> inventory, int coins){
+        Console.WriteLine("What would you like to sell?");
+        string SellingItem = Console.ReadLine();
+
+        switch (SellingItem)
+        {
+            case "pickaxe":
+            pickaxe.SellMe(inventory, coins);
+            break;
+            default:
+            Console.WriteLine("You dont have that item"); 
+            break;
+        }
+        return coins;
+    }
 
     static void Main(string[] args)
     {
@@ -55,12 +72,14 @@ static void AddToInventory(List<string> inventory, params string[] items) {
         int TutuorialProgress = 0;
         string input0;
         List<string> Inventory = new List<string>();
-        AddToInventory(Inventory,"Rope");
+        AddToInventory(Inventory,"Stone", "Stone", "Stick", "Rope");
         pickaxe.CraftMe(Inventory);
         CheckInventory(Inventory);
+        pickaxe.SellMe(Inventory, Coins);
 
         Console.WriteLine("Would you like to see the tutuorial? Y or N");
-        if (Console.ReadLine() == "Y") {
+        input0 = Console.ReadLine();
+        if (input0 == "Y" || input0 == "y") {
             Console.WriteLine("You are a wandering trader, lets start by checking your inventory, type Inventory to check your inventory.");
             while (TutuorialProgress == 0){
                 input0 = Console.ReadLine();
@@ -80,6 +99,7 @@ static void AddToInventory(List<string> inventory, params string[] items) {
                     input0 = Console.ReadLine();
                     if (input0 == "Pickaxe" || input0 == "pickaxe"){
                         pickaxe.CraftMe(Inventory);
+                        TutuorialProgress++;
                     } else {
                         Console.WriteLine("Please type \"Craft\" again and then \"Pickaxe\".");
                     }
@@ -87,12 +107,15 @@ static void AddToInventory(List<string> inventory, params string[] items) {
                     Console.WriteLine("Please type \"Craft\"");
                 }
             }
+            Console.WriteLine("I wonder if you have any coins.");
+            Console.WriteLine("Type \"Coins\".");
+            while (TutuorialProgress == 2){
+                if (true) {
+                    
+                }
+            }
         }
     }
 
-    private static void AddToInventory(string v1, string v2, string v3, string v4, List<string> inventory)
-    {
-        throw new NotImplementedException();
-    }
 }
  
